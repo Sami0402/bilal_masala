@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
       darkTheme: AppTheme.darkTheme,
       home: const HomeScreen(),
       getPages: Routes.pages,
+      debugShowCheckedModeBanner: false,
     );
   }
 }
