@@ -1,85 +1,61 @@
+import 'package:bilal_masala/Controllers/home_controller.dart';
 import 'package:bilal_masala/utility/constants/app_colors.dart';
 import 'package:bilal_masala/utility/helpers/size_config.dart';
+import 'package:bilal_masala/utility/widgets/custom_App_Bar.dart';
+import 'package:bilal_masala/utility/widgets/search_items.dart';
+import 'package:bilal_masala/utility/widgets/top_card.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:get/state_manager.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig.init(context);
+
+    final HomeController controller = Get.put(HomeController());
+
     return Scaffold(
+      resizeToAvoidBottomInset: true,
+      backgroundColor: AppColor.darkGrey,
       body: SafeArea(
-        child: Column(
+        child: Stack(
           children: [
-            Container(
-              // width: double.infinity,
-              height: 100,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                  colors: [
-                    Color(0xFF851F00),
-                    Color(0xFFA53200),
-                    Color(0xFFC24A00),
-                  ],
-                ),
+            SingleChildScrollView(
+              padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom,
               ),
-              child: Row(
+              child: Column(
                 children: [
-                  Icon(
-                    Icons.local_fire_department,
-                    color: AppColor.white,
-                    size: 32,
-                  ),
-                  Text(
-                    'Bilal Masala',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: AppColor.white,
-                      fontSize: 28,
-                    ),
-                  ),
-                  SizedBox(width: 100),
-                  Text(
-                    'Todays date',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: AppColor.white,
-                      fontSize: 15,
-                    ),
-                  ),
+
+                  SizedBox(height: SizeConfig.screenHeight * 0.15),
+                  TopCard(),
+
+                  // SEARCH
+                  SearchItems(),
+
+                  // CATEGORY
+
+                  // LIST OF ITEMS
                 ],
               ),
             ),
-            SizedBox(height: 15),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Container(
-                  height: 300,
-                  width: double.infinity,
-                  decoration: BoxDecoration(color: AppColor.darkGrey),
-                  child: Column(
-                    children: [
-                      TextField(
-                        decoration: InputDecoration(
-                          fillColor: AppColor.charcoal,
-                          prefixIcon: Icon(
-                            Icons.person,
-                            color: Colors.purple[200],
-                          ),
-                          hintText: 'Custumer Name(Optional)',
-                          border: OutlineInputBorder(),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
+
+            // HEADER
+            CustomAppBar(controller: controller),
           ],
         ),
       ),
     );
   }
 }
+
+
+
+
+
+
