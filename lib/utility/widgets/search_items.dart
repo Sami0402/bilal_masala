@@ -6,42 +6,36 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class SearchItems extends StatelessWidget {
-  const SearchItems({
-    super.key,
-  });
+  const SearchItems({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding:
-          EdgeInsets.symmetric(
-            horizontal: SizeConfig.screenWidth * 0.04,
-          ).copyWith(
+      padding: EdgeInsets.symmetric(horizontal: SizeConfig.screenWidth * 0.04)
+          .copyWith(
             top: SizeConfig.screenHeight * 0.03,
             // bottom: SizeConfig.screenHeight * 0.01,
           ),
       child: TextField(
+        style: TextStyle(color: Colors.white),
         decoration: InputDecoration(
           filled: true,
-    
-          fillColor: AppColor.charcoal,
+          fillColor: Colors.black,
           prefixIcon: Padding(
             padding: EdgeInsets.only(
               top: SizeConfig.screenHeight * 0.027,
               bottom: SizeConfig.screenHeight * 0.027,
               left: SizeConfig.screenWidth * 0.016,
             ),
-            child: Icon(
-              CupertinoIcons.search,
-              color: Colors.green,
-            ),
+            child: Icon(CupertinoIcons.search, color: Colors.deepPurple),
           ),
           hintText: 'Search masala by name',
           hintStyle: TypographyPoppins.small.copyWith(
             fontWeight: FontWeight.w500,
+            color: AppColor.grey,
           ),
           border: OutlineInputBorder(
-            borderSide: BorderSide(width: 2, color: Colors.grey),
+            borderSide: BorderSide(width: 2, color: Colors.black),
             borderRadius: BorderRadius.circular(14),
           ),
           focusedBorder: OutlineInputBorder(
