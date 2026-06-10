@@ -1,7 +1,9 @@
 import 'package:bilal_masala/Controllers/home_controller.dart';
 import 'package:bilal_masala/utility/constants/app_colors.dart';
 import 'package:bilal_masala/utility/helpers/size_config.dart';
+import 'package:bilal_masala/utility/widgets/Items.dart';
 import 'package:bilal_masala/utility/widgets/custom_App_Bar.dart';
+import 'package:bilal_masala/utility/widgets/custom_category_button.dart';
 import 'package:bilal_masala/utility/widgets/search_items.dart';
 import 'package:bilal_masala/utility/widgets/top_card.dart';
 import 'package:flutter/cupertino.dart';
@@ -31,7 +33,6 @@ class HomeScreen extends StatelessWidget {
               ),
               child: Column(
                 children: [
-
                   SizedBox(height: SizeConfig.screenHeight * 0.15),
                   TopCard(),
 
@@ -39,8 +40,12 @@ class HomeScreen extends StatelessWidget {
                   SearchItems(),
 
                   // CATEGORY
+                  SizedBox(height: SizeConfig.screenHeight * 0.027),
+                  CustomCategoryButton(),
 
                   // LIST OF ITEMS
+                  SizedBox(height: SizeConfig.screenHeight * 0.027),
+                  Items(),
                 ],
               ),
             ),
@@ -53,9 +58,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-
