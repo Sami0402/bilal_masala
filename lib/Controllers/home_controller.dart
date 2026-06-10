@@ -3,9 +3,22 @@ import 'dart:async';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
-  final Rx<DateTime> currentTime = DateTime.now().obs;
 
+  // DATE AND TIME 
+  final Rx<DateTime> currentTime = DateTime.now().obs;
   Timer? timer;
+
+  // FOR CATEGORY BUTTONS
+  List categories = [
+      'ALL',
+      'Chilli',
+      'Blended',
+      'Whole',
+      'Seeds',
+      'Dry Fruits',
+    ];
+  final RxInt currentCategoryInd = 0.obs; 
+
 
   @override
   void onInit() {

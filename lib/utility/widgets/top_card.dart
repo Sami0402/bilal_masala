@@ -6,24 +6,18 @@ import 'package:bilal_masala/utility/widgets/solid_text_button.dart';
 import 'package:flutter/widgets.dart';
 
 class TopCard extends StatelessWidget {
-  const TopCard({
-    super.key,
-  });
+  const TopCard({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: SizeConfig.screenHeight * 0.42,
+      height: SizeConfig.screenHeight * 0.40,
       decoration: BoxDecoration(
         color: AppColor.charcoal,
-        border: Border(
-          bottom: BorderSide(width: 3.0, color: AppColor.grey),
-        ),
+        border: Border(bottom: BorderSide(width: 3.0, color: AppColor.grey)),
       ),
-      padding:
-          EdgeInsets.symmetric(
-            horizontal: SizeConfig.screenWidth * 0.04,
-          ).copyWith(
+      padding: EdgeInsets.symmetric(horizontal: SizeConfig.screenWidth * 0.04)
+          .copyWith(
             top: SizeConfig.screenHeight * 0.03,
             // bottom: SizeConfig.screenHeight * 0.01,
           ),
@@ -31,19 +25,17 @@ class TopCard extends StatelessWidget {
         children: [
           // CUSTOMER NAME
           AddCustomerName(),
-    
-          SizedBox(height: SizeConfig.screenHeight * 0.04),
-    
+
+          SizedBox(height: SizeConfig.screenHeight * 0.02),
+
           // TAP A PRODUCT LINE
           Text(
             'Tap a product below to add it to the bill',
-            style: TypographyPoppins.medium.copyWith(
-              color: AppColor.grey,
-            ),
+            style: TypographyPoppins.medium.copyWith(color: AppColor.grey),
           ),
-    
+
           SizedBox(height: SizeConfig.screenHeight * 0.035),
-    
+
           // THREE BUTTONS (CLEAR  PRINT BILL  SAVE)
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

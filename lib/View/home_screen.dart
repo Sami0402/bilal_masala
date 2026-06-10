@@ -34,6 +34,8 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 children: [
                   SizedBox(height: SizeConfig.screenHeight * 0.15),
+
+                  // CUSTOMER NAME AND ACTION BUTTONS
                   TopCard(),
 
                   // SEARCH
@@ -46,6 +48,8 @@ class HomeScreen extends StatelessWidget {
                   // LIST OF ITEMS
                   SizedBox(height: SizeConfig.screenHeight * 0.027),
                   Items(),
+
+                  SizedBox(height: SizeConfig.screenHeight * 0.027),
                 ],
               ),
             ),
