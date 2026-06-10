@@ -14,16 +14,16 @@ class SolidTextButton extends StatelessWidget {
     return InkWell(
       onTap: () {},
       child: Container(
-        height: SizeConfig.screenHeight * 0.14,
+        height: SizeConfig.screenHeight * 0.06,
         width: SizeConfig.screenWidth * 0.27,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-          color: AppColor.grey,
+          color: AppColor.grey.withValues(alpha: 0.2),
         ),
         child: Center(
           child: Text(
             text,
-            style: TypographyPoppins.regular.copyWith(
+            style: TypographyPoppins.small.copyWith(
               fontWeight: FontWeight.w500,
             ),
           ),

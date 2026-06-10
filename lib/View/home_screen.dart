@@ -33,7 +33,7 @@ class HomeScreen extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  SizedBox(height: SizeConfig.screenHeight * 0.15),
+                  SizedBox(height: SizeConfig.screenHeight * 0.11),
 
                   // CUSTOMER NAME AND ACTION BUTTONS
                   TopCard(),

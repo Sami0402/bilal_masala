@@ -109,11 +109,14 @@ class BottomSheetContent extends StatelessWidget {
                 // QUANTITY
                 Expanded(
                   child: TextField(
+                    style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
+                      filled: true,
+                      fillColor: AppColor.darkGrey,
                       hint: Text(
                         "Quantity",
                         style: TypographyPoppins.medium.copyWith(
-                          color: AppColor.white,
+                          color: AppColor.grey,
                         ),
                       ),
 
@@ -153,11 +156,14 @@ class BottomSheetContent extends StatelessWidget {
                 SizedBox(width: SizeConfig.screenWidth * 0.03),
                 Expanded(
                   child: TextField(
+                    style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
+                      filled: true,
+                      fillColor: AppColor.darkGrey,
                       hint: Text(
                         "Price",
                         style: TypographyPoppins.medium.copyWith(
-                          color: AppColor.white,
+                          color: AppColor.grey,
                         ),
                       ),
 
