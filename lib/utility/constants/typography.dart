@@ -26,4 +26,9 @@ class TypographyPoppins {
     fontSize: 15,
     color: AppColor.white,
   );
+  static const TextStyle label = TextStyle(
+    fontFamily: poppins,
+    fontSize: 12,
+    color: AppColor.white,
+  );
 }
