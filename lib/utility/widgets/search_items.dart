@@ -11,11 +11,10 @@ class SearchItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: SizeConfig.screenWidth * 0.04)
-          .copyWith(
-            top: SizeConfig.screenHeight * 0.03,
-            // bottom: SizeConfig.screenHeight * 0.01,
-          ),
+      padding: EdgeInsets.symmetric(horizontal: 20).copyWith(
+        top: 15,
+        // bottom: SizeConfig.screenHeight * 0.01,
+      ),
       child: TextField(
         style: TextStyle(color: Colors.white),
         decoration: InputDecoration(

@@ -1,25 +1,35 @@
 import 'dart:async';
 
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
-
-  // DATE AND TIME 
+  // DATE AND TIME
   final Rx<DateTime> currentTime = DateTime.now().obs;
   Timer? timer;
 
   // FOR CATEGORY BUTTONS
   List categories = [
-      'ALL',
-      'Chilli',
-      'Blended',
-      'Whole',
-      'Seeds',
-      'Dry Fruits',
-    ];
-  final RxInt currentCategoryInd = 0.obs; 
+    'ALL',
+    'Chilli',
+    'Blended',
+    'Whole',
+    'Seeds',
+    'Dry Fruits',
+  ];
+  final RxInt currentCategoryInd = 0.obs;
 
-
+  // PAGE VIEW
+  final RxInt selectedTab = 0.obs;
+  final PageController pageController = PageController();
+  void changeTab(int index) {
+    selectedTab.value = index;
+    pageController.jumpToPage(index);
+  }
+  void onPageChanged(int index){
+    selectedTab.value = index;
+  }
+  
   @override
   void onInit() {
     super.onInit();
