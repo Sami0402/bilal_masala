@@ -1,4 +1,5 @@
 import 'package:bilal_masala/Controllers/home_controller.dart';
+import 'package:bilal_masala/View/Items_screen.dart';
 import 'package:bilal_masala/View/billing_screen.dart';
 import 'package:bilal_masala/utility/constants/app_colors.dart';
 import 'package:bilal_masala/utility/helpers/size_config.dart';
@@ -26,43 +27,12 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: AppColor.darkGrey,
-      body: SafeArea(
-        child: Stack(
-          children: [
-            SingleChildScrollView(
-              padding: EdgeInsets.only(
-                bottom: MediaQuery.of(context).viewInsets.bottom,
-              ),
-              child: Column(
-                children: [
-                  SizedBox(height: SizeConfig.screenHeight * 0.11),
-
-                  // SEARCH
-                  ElevatedButton(
-                    onPressed: () {
-                      Get.to(() => BillingScreen());
-                    },
-                    child: Text("Move to Biling screen"),
-                  ),
-                  SearchItems(),
-
-                  // CATEGORY
-                  SizedBox(height: SizeConfig.screenHeight * 0.027),
-                  CustomCategoryButton(),
-
-                  // LIST OF ITEMS
-                  SizedBox(height: SizeConfig.screenHeight * 0.027),
-                  Items(),
-
-                  SizedBox(height: SizeConfig.screenHeight * 0.027),
-                ],
-              ),
-            ),
-
-            // HEADER
-            CustomAppBar(controller: controller),
-          ],
-        ),
+      appBar: CustomAppBar(controller: controller),
+      body: PageView(
+        scrollDirection: Axis.horizontal,
+        controller: controller.pageController,
+        onPageChanged: controller.onPageChanged,
+        children: [ItemsScreen(), BillingScreen()],
       ),
     );
   }

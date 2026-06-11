@@ -5,27 +5,31 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class SolidTextButton extends StatelessWidget {
-  const SolidTextButton({super.key, required this.text});
+  const SolidTextButton({super.key, required this.text, this.onTap, this.backgroundColor, this.textStyle = TypographyPoppins.small});
 
   final String text;
+  final GestureTapCallback? onTap;
+  final Color? backgroundColor;
+  final TextStyle? textStyle;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: onTap,
       child: Container(
         height: SizeConfig.screenHeight * 0.06,
         width: SizeConfig.screenWidth * 0.27,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-          color: AppColor.grey.withValues(alpha: 0.2),
+          // color: AppColor.grey.withValues(alpha: 0.2),
+          color: backgroundColor,
         ),
         child: Center(
           child: Text(
             text,
-            style: TypographyPoppins.small.copyWith(
-              fontWeight: FontWeight.w500,
-            ),
+            
+            style: textStyle,
+            
           ),
         ),
       ),
