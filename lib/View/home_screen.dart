@@ -1,4 +1,5 @@
 import 'package:bilal_masala/Controllers/home_controller.dart';
+import 'package:bilal_masala/View/billing_screen.dart';
 import 'package:bilal_masala/utility/constants/app_colors.dart';
 import 'package:bilal_masala/utility/helpers/size_config.dart';
 import 'package:bilal_masala/utility/widgets/Items.dart';
@@ -10,6 +11,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:get/route_manager.dart';
 import 'package:get/state_manager.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -35,10 +37,13 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   SizedBox(height: SizeConfig.screenHeight * 0.11),
 
-                  // CUSTOMER NAME AND ACTION BUTTONS
-                  TopCard(),
-
                   // SEARCH
+                  ElevatedButton(
+                    onPressed: () {
+                      Get.to(() => BillingScreen());
+                    },
+                    child: Text("Move to Biling screen"),
+                  ),
                   SearchItems(),
 
                   // CATEGORY
