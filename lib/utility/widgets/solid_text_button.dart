@@ -5,12 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class SolidTextButton extends StatelessWidget {
-  const SolidTextButton({super.key, required this.text, this.onTap, this.backgroundColor, this.textStyle = TypographyPoppins.small});
+  const SolidTextButton({super.key, required this.text, this.onTap, this.backgroundColor, this.textStyle = TypographyPoppins.small, this.borderColor});
 
   final String text;
   final GestureTapCallback? onTap;
   final Color? backgroundColor;
   final TextStyle? textStyle;
+  final Color? borderColor;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,9 @@ class SolidTextButton extends StatelessWidget {
         width: SizeConfig.screenWidth * 0.27,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-          // color: AppColor.grey.withValues(alpha: 0.2),
+          border: Border.all(
+            color: borderColor == null ? backgroundColor! : borderColor!,
+          ),
           color: backgroundColor,
         ),
         child: Center(

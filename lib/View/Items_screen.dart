@@ -6,8 +6,7 @@ import 'package:bilal_masala/utility/widgets/custom_category_button.dart';
 import 'package:bilal_masala/utility/widgets/search_items.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
+
 
 class ItemsScreen extends StatelessWidget {
   const ItemsScreen({super.key});
