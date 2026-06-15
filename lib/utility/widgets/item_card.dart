@@ -384,6 +384,70 @@ class ItemCard extends StatelessWidget {
                 child: InkWell(
                   onTap: () {
                     // TODO SAMI SHAIKH
+                    Get.bottomSheet(
+                      Container(
+                        height: SizeConfig.screenHeight * 0.2,
+                        width: SizeConfig.screenWidth,
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 15,
+                        ),
+                        decoration: BoxDecoration(
+                          color: AppColor.charcoal,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(16),
+                            topRight: Radius.circular(16),
+                          ),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "🗑️ Delete Product?",
+                              style: TypographyPoppins.medium.copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(height: 15),
+                            // Item to be deleted
+                            Text(
+                              name,
+                              style: TypographyPoppins.small.copyWith(
+                                color: AppColor.grey,
+                              ),
+                            ),
+                            SizedBox(height: 15),
+                            // Cancel And Delete
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: SolidTextButton(
+                                    text: "Cancel",
+                                    borderColor: AppColor.grey,
+                                    textStyle: TypographyPoppins.small.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      color: AppColor.grey,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(width: 15),
+                                Expanded(
+                                  child: SolidTextButton(
+                                    onTap: () {},
+                                    text: "Delete",
+                                    backgroundColor: Colors.red,
+                                    textStyle: TypographyPoppins.small.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      color: AppColor.white,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
                   },
                   child: Container(
                     padding: const EdgeInsets.symmetric(vertical: 8),

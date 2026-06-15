@@ -5,7 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class SolidTextButton extends StatelessWidget {
-  const SolidTextButton({super.key, required this.text, this.onTap, this.backgroundColor, this.textStyle = TypographyPoppins.small, this.borderColor});
+  const SolidTextButton({
+    super.key,
+    required this.text,
+    this.onTap,
+    this.backgroundColor,
+    this.textStyle = TypographyPoppins.small,
+    this.borderColor,
+  });
 
   final String text;
   final GestureTapCallback? onTap;
@@ -27,14 +34,7 @@ class SolidTextButton extends StatelessWidget {
           ),
           color: backgroundColor,
         ),
-        child: Center(
-          child: Text(
-            text,
-            
-            style: textStyle,
-            
-          ),
-        ),
+        child: Center(child: Text(text, style: textStyle)),
       ),
     );
   }
