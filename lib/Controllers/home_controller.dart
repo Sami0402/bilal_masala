@@ -20,10 +20,20 @@ class HomeController extends GetxController {
   final RxInt currentCategoryInd = 0.obs;
 
   // EDIT BOTTOMSHEET
+  final RxnBool isSaveActive = RxnBool(null);
   final TextEditingController editProductName = TextEditingController();
   final TextEditingController editSize = TextEditingController();
   final TextEditingController editPrice = TextEditingController();
-  
+
+  void checkIsSaveActive() {
+    if (editProductName.text.isNotEmpty &&
+        editPrice.text.isNotEmpty &&
+        editSize.text.isNotEmpty) {
+      isSaveActive.value = true;
+    } else {
+      isSaveActive.value = false;
+    }
+  }
 
   // PAGE VIEW
   final RxInt selectedTab = 0.obs;
@@ -32,13 +42,17 @@ class HomeController extends GetxController {
     selectedTab.value = index;
     pageController.jumpToPage(index);
   }
-  void onPageChanged(int index){
+
+  void onPageChanged(int index) {
     selectedTab.value = index;
   }
-  
+
   @override
   void onInit() {
     super.onInit();
+    editProductName.addListener(checkIsSaveActive);
+    editSize.addListener(checkIsSaveActive);
+    editPrice.addListener(checkIsSaveActive);
     timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       currentTime.value = DateTime.now();
     });
