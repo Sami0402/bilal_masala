@@ -19,6 +19,12 @@ class HomeController extends GetxController {
   ];
   final RxInt currentCategoryInd = 0.obs;
 
+  // EDIT BOTTOMSHEET
+  final TextEditingController editProductName = TextEditingController();
+  final TextEditingController editSize = TextEditingController();
+  final TextEditingController editPrice = TextEditingController();
+  
+
   // PAGE VIEW
   final RxInt selectedTab = 0.obs;
   final PageController pageController = PageController();
