@@ -19,13 +19,12 @@ class CustomSwitch extends StatelessWidget {
         borderRadius: BorderRadius.circular(25),
       ),
       child: Obx(
-        () => Expanded(
-          child: Row(
-            children: [
-              GestureDetector(
+        () => Row(
+          children: [
+            Expanded(
+              child: GestureDetector(
                 onTap: () => controller.changeTab(0),
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 13, vertical: 2),
                   margin: const EdgeInsets.all(4),
                   decoration: BoxDecoration(
                     color: controller.selectedTab.value == 0
@@ -46,11 +45,12 @@ class CustomSwitch extends StatelessWidget {
                   ),
                 ),
               ),
+            ),
 
-              GestureDetector(
+            Expanded(
+              child: GestureDetector(
                 onTap: () => controller.changeTab(1),
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 14, vertical: 2),
                   margin: const EdgeInsets.all(4),
                   decoration: BoxDecoration(
                     color: controller.selectedTab.value == 1
@@ -71,8 +71,8 @@ class CustomSwitch extends StatelessWidget {
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

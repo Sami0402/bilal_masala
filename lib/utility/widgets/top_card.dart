@@ -41,38 +41,7 @@ class TopCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              // OutlinedButton(
-              //   onPressed: () {},
-              //   style: OutlinedButton.styleFrom(
-              //     foregroundColor: AppColor.orangelight,
-              //     backgroundColor: AppColor.charcoal,
-              //     side: BorderSide(color: AppColor.orangelight, width: 2),
-              //     shape: RoundedRectangleBorder(
-              //       borderRadius: BorderRadius.circular(10),
-              //     ),
-              //   ),
-              //   child: Text('🗑 Clear', style: TypographyPoppins.small),
-              // ),
-              // ElevatedButton(
-              //   onPressed: () {},
-              //   style: ElevatedButton.styleFrom(
-              //     backgroundColor: AppColor.grey.withValues(alpha: 0.2),
-              //     shape: RoundedRectangleBorder(
-              //       borderRadius: BorderRadius.circular(10),
-              //     ),
-              //   ),
-              //   child: Text('🖨️ Print Bill', style: TypographyPoppins.small),
-              // ),
-              // ElevatedButton(
-              //   onPressed: () {},
-              //   style: ElevatedButton.styleFrom(
-              //     backgroundColor: AppColor.grey.withValues(alpha: 0.2),
-              //     shape: RoundedRectangleBorder(
-              //       borderRadius: BorderRadius.circular(10),
-              //     ),
-              //   ),
-              //   child: Text('💾 save', style: TypographyPoppins.small),
-              // ),
+              
               SolidTextButton(text: "🗑 Clear"),
               SolidTextButton(text: "🖨️ Print Bill"),
               SolidTextButton(text: "💾 save"),
