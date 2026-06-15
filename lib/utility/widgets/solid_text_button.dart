@@ -28,14 +28,7 @@ class SolidTextButton extends StatelessWidget {
           ),
           color: backgroundColor,
         ),
-        child: Center(
-          child: Text(
-            text,
-            
-            style: textStyle,
-            
-          ),
-        ),
+        child: Center(child: Text(text, style: textStyle)),
       ),
     );
   }
