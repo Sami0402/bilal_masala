@@ -1,6 +1,7 @@
 import 'package:bilal_masala/Controllers/home_controller.dart';
 import 'package:bilal_masala/utility/constants/app_colors.dart';
 import 'package:bilal_masala/utility/constants/typography.dart';
+import 'package:bilal_masala/utility/constants/validation.dart';
 import 'package:bilal_masala/utility/helpers/size_config.dart';
 import 'package:bilal_masala/utility/widgets/quantity_price_chip.dart';
 import 'package:bilal_masala/utility/widgets/solid_text_button.dart';
@@ -8,6 +9,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:get/state_manager.dart';
 
 class ItemCard extends StatelessWidget {
@@ -18,10 +20,15 @@ class ItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final HomeController controller = HomeController();
 
     final _formKey = GlobalKey<FormState>();
+
+    void customValidation() {
+      if (_formKey.currentState!.validate()) {
+        print('Product Succesfully Edited');
+      }
+    }
 
     List<String> categoryList = [
       'Chilli',
@@ -30,7 +37,7 @@ class ItemCard extends StatelessWidget {
       'Blended',
       'Special',
     ];
-    
+
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
 
@@ -138,7 +145,7 @@ class ItemCard extends StatelessWidget {
                                   ),
                                 ),
                                 SizedBox(height: 12),
-                            
+
                                 // PRODUCT NAME
                                 Text(
                                   'Product Name',
@@ -149,7 +156,11 @@ class ItemCard extends StatelessWidget {
                                 SizedBox(height: 8),
                                 TextFormField(
                                   controller: controller.editProductName,
-                                  
+                                  validator: Validations.editProductName,
+                                  onChanged: (value) {
+                                    controller.isSaveActive.value =
+                                        value.isEmpty ? false : true;
+                                  },
                                   decoration: InputDecoration(
                                     hint: Text(
                                       'e.g. Laal Mirch Powder',
@@ -157,7 +168,7 @@ class ItemCard extends StatelessWidget {
                                         color: AppColor.grey,
                                       ),
                                     ),
-                            
+
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(12),
                                       borderSide: BorderSide(
@@ -172,16 +183,23 @@ class ItemCard extends StatelessWidget {
                                         width: 2.5,
                                       ),
                                     ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                      borderSide: BorderSide(
+                                        color: AppColor.white,
+                                        width: 2.5,
+                                      ),
+                                    ),
                                   ),
-                            
+
                                   style: TypographyPoppins.small.copyWith(
                                     color: AppColor.white,
                                   ),
                                 ),
                                 SizedBox(height: 18),
-                            
+
                                 // CATEGORY
-                                
+
                                 // CATEGORY
                                 Text(
                                   'Category',
@@ -203,7 +221,9 @@ class ItemCard extends StatelessWidget {
                                         ),
                                         margin: EdgeInsets.only(right: 10),
                                         decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(12),
+                                          borderRadius: BorderRadius.circular(
+                                            12,
+                                          ),
                                           border: Border.all(color: Colors.red),
                                         ),
                                         child: Center(
@@ -218,7 +238,7 @@ class ItemCard extends StatelessWidget {
                                   ),
                                 ),
                                 SizedBox(height: 18),
-                            
+
                                 // VARIANTS (SIZE & PRIZE)
                                 Text(
                                   'Variants (Size & Price)',
@@ -231,13 +251,16 @@ class ItemCard extends StatelessWidget {
                                   children: [
                                     Expanded(
                                       child: TextFormField(
+                                        controller: controller.editSize,
+                                        validator: Validations.editSize,
+
                                         decoration: InputDecoration(
                                           hint: Text(
                                             'Size e.g. 250g',
                                             style: TypographyPoppins.small
                                                 .copyWith(color: AppColor.grey),
                                           ),
-                            
+
                                           border: OutlineInputBorder(
                                             borderRadius: BorderRadius.circular(
                                               12,
@@ -256,8 +279,17 @@ class ItemCard extends StatelessWidget {
                                               width: 2.5,
                                             ),
                                           ),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(
+                                              12,
+                                            ),
+                                            borderSide: BorderSide(
+                                              color: AppColor.white,
+                                              width: 2.5,
+                                            ),
+                                          ),
                                         ),
-                            
+
                                         style: TypographyPoppins.small.copyWith(
                                           color: AppColor.white,
                                         ),
@@ -266,13 +298,15 @@ class ItemCard extends StatelessWidget {
                                     SizedBox(width: 10),
                                     Expanded(
                                       child: TextFormField(
+                                        controller: controller.editPrice,
+                                        validator: Validations.editPrice,
                                         decoration: InputDecoration(
                                           hint: Text(
                                             '₹ Price',
                                             style: TypographyPoppins.small
                                                 .copyWith(color: AppColor.grey),
                                           ),
-                            
+
                                           border: OutlineInputBorder(
                                             borderRadius: BorderRadius.circular(
                                               12,
@@ -291,8 +325,17 @@ class ItemCard extends StatelessWidget {
                                               width: 2.5,
                                             ),
                                           ),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(
+                                              12,
+                                            ),
+                                            borderSide: BorderSide(
+                                              color: AppColor.white,
+                                              width: 2.5,
+                                            ),
+                                          ),
                                         ),
-                            
+
                                         style: TypographyPoppins.small.copyWith(
                                           color: AppColor.white,
                                         ),
@@ -300,12 +343,15 @@ class ItemCard extends StatelessWidget {
                                     ),
                                     IconButton(
                                       onPressed: () {},
-                                      icon: Icon(Icons.clear, color: Colors.red),
+                                      icon: Icon(
+                                        Icons.clear,
+                                        color: Colors.red,
+                                      ),
                                     ),
                                   ],
                                 ),
                                 SizedBox(height: 12),
-                            
+
                                 // 'ADD VARIANT' BUTTON
                                 DottedBorder(
                                   options: RoundedRectDottedBorderOptions(
@@ -326,31 +372,50 @@ class ItemCard extends StatelessWidget {
                                   ),
                                 ),
                                 SizedBox(height: 18),
-                            
+
                                 // CANCEL & SAVE CHANGES
                                 Row(
                                   children: [
                                     Expanded(
                                       child: SolidTextButton(
+                                        onTap: Get.back,
                                         text: 'Cancel',
                                         textStyle: TypographyPoppins.small
                                             .copyWith(color: AppColor.grey),
                                         backgroundColor: Colors.transparent,
                                         borderColor: AppColor.grey,
+                                        borderRadius: BorderRadius.circular(10),
                                       ),
                                     ),
                                     SizedBox(width: 8),
                                     Expanded(
-                                      child: SolidTextButton(
-                                        text: 'Save Changes',
-                                        textStyle: TypographyPoppins.small
-                                            .copyWith(color: AppColor.white),
-                                        backgroundColor: AppColor.orangelight,
+                                      child: Obx(
+                                        () => SolidTextButton(
+                                          onTap: customValidation,
+                                          text: 'Save Changes',
+                                          textStyle: TypographyPoppins.small
+                                              .copyWith(
+                                                color: AppColor.white,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                          backgroundColor:
+                                              controller.isSaveActive.value ==
+                                                      null ||
+                                                  controller
+                                                          .isSaveActive
+                                                          .value ==
+                                                      false
+                                              ? AppColor.grey
+                                              : AppColor.orangelight,
+                                          borderRadius: BorderRadius.circular(
+                                            10,
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ],
                                 ),
-                            
+
                                 SizedBox(height: 20),
                               ],
                             ),
