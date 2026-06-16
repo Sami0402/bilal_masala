@@ -1,6 +1,7 @@
 import 'package:bilal_masala/Controllers/home_controller.dart';
 import 'package:bilal_masala/utility/constants/app_colors.dart';
 import 'package:bilal_masala/utility/constants/typography.dart';
+import 'package:bilal_masala/utility/constants/validation.dart';
 import 'package:bilal_masala/utility/helpers/size_config.dart';
 import 'package:bilal_masala/utility/widgets/solid_text_button.dart';
 import 'package:dotted_border/dotted_border.dart';
@@ -20,6 +21,12 @@ class AddNewProduct extends StatelessWidget {
 
     final _formKey = GlobalKey<FormState>();
 
+    void customValidation() {
+      if (_formKey.currentState!.validate()) {
+        print('Product Added Succesfully');
+      }
+    }
+
     List<String> categoryList = [
       'Chilli',
       'Basic',
@@ -33,9 +40,11 @@ class AddNewProduct extends StatelessWidget {
           Form(
             key: _formKey,
             child: Container(
-              height: SizeConfig.screenHeight * 0.9,
+              // height: SizeConfig.screenHeight * 0.9,
               width: SizeConfig.screenWidth,
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+              padding: EdgeInsets.symmetric(
+                horizontal: 20,
+              ).copyWith(top: 20, bottom: 10),
               decoration: BoxDecoration(
                 color: AppColor.charcoal,
                 borderRadius: BorderRadius.only(
@@ -43,7 +52,7 @@ class AddNewProduct extends StatelessWidget {
                   topRight: Radius.circular(16),
                 ),
               ),
-              child: Center(
+              child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -65,7 +74,10 @@ class AddNewProduct extends StatelessWidget {
                     SizedBox(height: 8),
                     TextFormField(
                       controller: controller.editProductName,
-
+                      validator: Validations.editProductName,
+                      onChanged: (value) {
+                        controller.checkisCreateProductActive();
+                      },
                       decoration: InputDecoration(
                         hint: Text(
                           'e.g. Laal Mirch Powder',
@@ -148,6 +160,11 @@ class AddNewProduct extends StatelessWidget {
                       children: [
                         Expanded(
                           child: TextFormField(
+                            controller: controller.editSize,
+                            validator: Validations.editSize,
+                            onChanged: (value) {
+                              controller.checkisCreateProductActive();
+                            },
                             decoration: InputDecoration(
                               hint: Text(
                                 'Size e.g. 250g',
@@ -180,6 +197,11 @@ class AddNewProduct extends StatelessWidget {
                         SizedBox(width: 10),
                         Expanded(
                           child: TextFormField(
+                            controller: controller.editPrice,
+                            validator: Validations.editPrice,
+                            onChanged: (value) {
+                              controller.checkisCreateProductActive();
+                            },
                             decoration: InputDecoration(
                               hint: Text(
                                 '₹ Price',
@@ -243,6 +265,7 @@ class AddNewProduct extends StatelessWidget {
                         Expanded(
                           child: SolidTextButton(
                             text: 'Cancel',
+                            borderRadius: BorderRadius.circular(8),
                             textStyle: TypographyPoppins.small.copyWith(
                               color: AppColor.grey,
                             ),
@@ -252,12 +275,22 @@ class AddNewProduct extends StatelessWidget {
                         ),
                         SizedBox(width: 8),
                         Expanded(
-                          child: SolidTextButton(
-                            text: '✅ Create Product',
-                            textStyle: TypographyPoppins.small.copyWith(
-                              color: AppColor.white,
+                          child: Obx(
+                            () => SolidTextButton(
+                              text: '✅ Create Product',
+                              onTap: customValidation,
+                              borderRadius: BorderRadius.circular(8),
+                              textStyle: TypographyPoppins.small.copyWith(
+                                color: AppColor.white,
+                              ),
+                              backgroundColor:
+                                  controller.isCreateProductActive.value ==
+                                          null ||
+                                      controller.isCreateProductActive.value ==
+                                          false
+                                  ? AppColor.grey
+                                  : AppColor.orangelight,
                             ),
-                            backgroundColor: AppColor.orangelight,
                           ),
                         ),
                       ],

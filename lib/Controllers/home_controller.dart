@@ -21,6 +21,7 @@ class HomeController extends GetxController {
 
   // EDIT BOTTOMSHEET
   final RxnBool isSaveActive = RxnBool(null);
+  final RxnBool isCreateProductActive = RxnBool(null);
   final TextEditingController editProductName = TextEditingController();
   final TextEditingController editSize = TextEditingController();
   final TextEditingController editPrice = TextEditingController();
@@ -29,9 +30,20 @@ class HomeController extends GetxController {
     if (editProductName.text.isNotEmpty &&
         editPrice.text.isNotEmpty &&
         editSize.text.isNotEmpty) {
+      print('Listner called!!!!!');
+      
       isSaveActive.value = true;
     } else {
       isSaveActive.value = false;
+    }
+  }
+  void checkisCreateProductActive() {
+    if (editProductName.text.isNotEmpty &&
+        editPrice.text.isNotEmpty &&
+        editSize.text.isNotEmpty) {
+      isCreateProductActive.value = true;
+    } else {
+      isCreateProductActive.value = false;
     }
   }
 
@@ -42,17 +54,14 @@ class HomeController extends GetxController {
     selectedTab.value = index;
     pageController.jumpToPage(index);
   }
-
   void onPageChanged(int index) {
     selectedTab.value = index;
   }
 
+
   @override
   void onInit() {
     super.onInit();
-    editProductName.addListener(checkIsSaveActive);
-    editSize.addListener(checkIsSaveActive);
-    editPrice.addListener(checkIsSaveActive);
     timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       currentTime.value = DateTime.now();
     });
@@ -61,6 +70,10 @@ class HomeController extends GetxController {
   @override
   void onClose() {
     super.onClose();
+    editProductName.dispose();
+    editPrice.dispose();
+    editSize.dispose();
+    pageController.dispose();
     timer?.cancel();
   }
 }
