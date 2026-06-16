@@ -2,8 +2,11 @@ import 'package:bilal_masala/utility/constants/app_colors.dart';
 import 'package:bilal_masala/utility/constants/typography.dart';
 import 'package:bilal_masala/utility/helpers/custom_grid_delegate.dart';
 import 'package:bilal_masala/utility/helpers/size_config.dart';
+import 'package:bilal_masala/utility/widgets/solid_text_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/route_manager.dart';
 
 class BottomSheetContent extends StatelessWidget {
   const BottomSheetContent({super.key});
@@ -30,12 +33,284 @@ class BottomSheetContent extends StatelessWidget {
                 fontWeight: FontWeight.w600,
               ),
             ),
-            // CHOSE SIZE TEXT
             SizedBox(height: SizeConfig.screenHeight * 0.01),
-            Text(
-              "Choose size",
-              style: TypographyPoppins.small.copyWith(color: AppColor.grey),
+            // Preset Size And Manual Entry Button
+            Row(
+              children: [
+                Expanded(
+                  child: SolidTextButton(
+                    text: "Preset Size",
+                    borderRadius: BorderRadius.circular(8),
+                    borderColor: AppColor.grey,
+                    textStyle: TypographyPoppins.small.copyWith(
+                      backgroundColor: AppColor.charcoal,
+                      color: AppColor.grey,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                SizedBox(width: SizeConfig.screenHeight * 0.0150),
+                Expanded(
+                  child: SolidTextButton(
+                    text: "Manual entry",
+                    onTap: () {
+                      Get.bottomSheet(
+                        Container(
+                          height: SizeConfig.screenHeight,
+                          width: SizeConfig.screenWidth,
+                          padding: EdgeInsets.symmetric(
+                            horizontal: SizeConfig.screenWidth * 0.060,
+                            vertical: SizeConfig.screenHeight * 0.035,
+                          ),
+                          decoration: BoxDecoration(
+                            color: AppColor.charcoal,
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(16),
+                              topRight: Radius.circular(16),
+                            ),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              // MASALA NAME
+                              Text(
+                                "Red Chilli Powder",
+                                style: TypographyPoppins.regular.copyWith(
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              SizedBox(height: SizeConfig.screenHeight * 0.01),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: SolidTextButton(
+                                      text: "Preset Size",
+                                      onTap: () => Get.back(),
+                                      borderRadius: BorderRadius.circular(8),
+                                      borderColor: AppColor.grey,
+                                      textStyle: TypographyPoppins.small
+                                          .copyWith(
+                                            backgroundColor: AppColor.charcoal,
+                                            color: AppColor.grey,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: SizeConfig.screenHeight * 0.0150,
+                                  ),
+
+                                  Expanded(
+                                    child: SolidTextButton(
+                                      text: "Manual entry",
+                                      borderRadius: BorderRadius.circular(8),
+                                      borderColor: AppColor.grey,
+                                      textStyle: TypographyPoppins.small
+                                          .copyWith(
+                                            backgroundColor: AppColor.charcoal,
+                                            color: AppColor.grey,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+
+                              SizedBox(height: SizeConfig.screenHeight * 0.01),
+
+                              //quantity
+                              Text(
+                                'Quantity(how many packets)',
+                                style: TypographyPoppins.small.copyWith(
+                                  color: AppColor.grey,
+                                ),
+                              ),
+                              SizedBox(height: 8),
+                              TextFormField(
+                                decoration: InputDecoration(
+                                  filled: true,
+                                  fillColor: Colors.black,
+                                  hint: Text(
+                                    'e.g. 100',
+                                    style: TypographyPoppins.small.copyWith(
+                                      color: AppColor.grey,
+                                    ),
+                                  ),
+
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                    borderSide: BorderSide(
+                                      color: AppColor.grey,
+                                      width: 3,
+                                    ),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                    borderSide: BorderSide(
+                                      color: AppColor.grey,
+                                      width: 2.5,
+                                    ),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                    borderSide: BorderSide(
+                                      color: AppColor.white,
+                                      width: 2.5,
+                                    ),
+                                  ),
+                                ),
+
+                                style: TypographyPoppins.small.copyWith(
+                                  color: AppColor.white,
+                                ),
+                              ),
+                              SizedBox(height: 8),
+                              Text(
+                                'Size/Weight',
+                                style: TypographyPoppins.small.copyWith(
+                                  color: AppColor.grey,
+                                ),
+                              ),
+                              SizedBox(height: 8),
+                              TextFormField(
+                                decoration: InputDecoration(
+                                  filled: true,
+                                  fillColor: Colors.black,
+                                  hint: Text(
+                                    "e.g 250g",
+                                    style: TypographyPoppins.small.copyWith(
+                                      color: AppColor.grey,
+                                    ),
+                                  ),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                    borderSide: BorderSide(
+                                      color: AppColor.grey,
+                                      width: 3,
+                                    ),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                    borderSide: BorderSide(
+                                      color: AppColor.grey,
+                                      width: 2.5,
+                                    ),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                    borderSide: BorderSide(
+                                      color: AppColor.white,
+                                      width: 2.5,
+                                    ),
+                                  ),
+                                ),
+
+                                style: TypographyPoppins.small.copyWith(
+                                  color: AppColor.white,
+                                ),
+                              ),
+                              SizedBox(height: 8),
+                              Text(
+                                'Price',
+                                style: TypographyPoppins.small.copyWith(
+                                  color: AppColor.grey,
+                                ),
+                              ),
+                              SizedBox(height: 8),
+                              TextFormField(
+                                decoration: InputDecoration(
+                                  filled: true,
+                                  fillColor: Colors.black,
+                                  hint: Text(
+                                    "e.g 120rs",
+                                    style: TypographyPoppins.small.copyWith(
+                                      color: AppColor.grey,
+                                    ),
+                                  ),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                    borderSide: BorderSide(
+                                      color: AppColor.grey,
+                                      width: 3,
+                                    ),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                    borderSide: BorderSide(
+                                      color: AppColor.grey,
+                                      width: 2.5,
+                                    ),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                    borderSide: BorderSide(
+                                      color: AppColor.white,
+                                      width: 2.5,
+                                    ),
+                                  ),
+                                ),
+
+                                style: TypographyPoppins.small.copyWith(
+                                  color: AppColor.white,
+                                ),
+                              ),
+                              SizedBox(height: 18),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: SolidTextButton(
+                                      text: "Add to Bill",
+                                      borderRadius: BorderRadius.circular(8),
+                                      borderColor: AppColor.grey,
+                                      textStyle: TypographyPoppins.small
+                                          .copyWith(
+                                            backgroundColor: AppColor.charcoal,
+                                            color: AppColor.grey,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+
+                              // Row(
+                              //   children: [
+                              //     Expanded(
+                              //       child: SolidTextButton(
+                              //         text: "cancel",
+                              //         borderRadius: BorderRadius.circular(8),
+                              //         borderColor: AppColor.grey,
+                              //         textStyle: TypographyPoppins.small
+                              //             .copyWith(
+                              //               backgroundColor: AppColor.charcoal,
+                              //               color: AppColor.grey,
+                              //               fontWeight: FontWeight.bold,
+                              //             ),
+                              //       ),
+                              //     ),
+                              //   ],
+                              // ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                    borderRadius: BorderRadius.circular(8),
+                    borderColor: AppColor.grey,
+                    textStyle: TypographyPoppins.small.copyWith(
+                      backgroundColor: AppColor.charcoal,
+                      color: AppColor.grey,
+
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
             ),
+
+            SizedBox(height: SizeConfig.screenHeight * 0.01),
 
             // QUANTITY AND PRICE
             SizedBox(height: SizeConfig.screenHeight * 0.02),
@@ -44,10 +319,10 @@ class BottomSheetContent extends StatelessWidget {
               child: GridView.builder(
                 physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-                itemCount: 4,
+                itemCount: 2,
                 gridDelegate:
                     SliverGridDelegateWithFixedCrossAxisCountAndFixedHeight(
-                      crossAxisCount: 2,
+                      crossAxisCount: 1,
                       crossAxisSpacing: SizeConfig.screenWidth * 0.03,
                       mainAxisSpacing: SizeConfig.screenHeight * 0.025,
                       height: SizeConfig.screenHeight * 0.06,
@@ -93,108 +368,21 @@ class BottomSheetContent extends StatelessWidget {
               color: AppColor.grey.withValues(alpha: 0.5),
             ),
 
-            // ADD MANUALLY
             SizedBox(height: SizeConfig.screenHeight * 0.015),
-            Text(
-              "Add Manually",
-              style: TypographyPoppins.medium.copyWith(
-                // fontSize: 22,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            SizedBox(height: SizeConfig.screenHeight * 0.025),
+
+            // Cancel Button
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                // QUANTITY
                 Expanded(
-                  child: TextField(
-                    style: TextStyle(color: Colors.white),
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: AppColor.darkGrey,
-                      hint: Text(
-                        "Quantity",
-                        style: TypographyPoppins.medium.copyWith(
-                          color: AppColor.grey,
-                        ),
-                      ),
-
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide(
-                          width: 1.5,
-                          color: AppColor.grey,
-                        ),
-                      ),
-                      disabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide(
-                          width: 1.5,
-                          color: AppColor.grey,
-                        ),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide(
-                          width: 1.5,
-                          color: AppColor.grey,
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide(
-                          width: 1.5,
-                          color: AppColor.white,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-
-                // PRICE
-                SizedBox(width: SizeConfig.screenWidth * 0.03),
-                Expanded(
-                  child: TextField(
-                    style: TextStyle(color: Colors.white),
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: AppColor.darkGrey,
-                      hint: Text(
-                        "Price",
-                        style: TypographyPoppins.medium.copyWith(
-                          color: AppColor.grey,
-                        ),
-                      ),
-
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide(
-                          width: 1.5,
-                          color: AppColor.grey,
-                        ),
-                      ),
-                      disabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide(
-                          width: 1.5,
-                          color: AppColor.grey,
-                        ),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide(
-                          width: 1.5,
-                          color: AppColor.grey,
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide(
-                          width: 1.5,
-                          color: AppColor.white,
-                        ),
-                      ),
+                  child: SolidTextButton(
+                    text: "Cancel",
+                    onTap: () => Get.back(),
+                    borderRadius: BorderRadius.circular(8),
+                    borderColor: AppColor.grey,
+                    textStyle: TypographyPoppins.small.copyWith(
+                      backgroundColor: AppColor.charcoal,
+                      color: AppColor.grey,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),

@@ -158,8 +158,8 @@ class ItemCard extends StatelessWidget {
                                   controller: controller.editProductName,
                                   validator: Validations.editProductName,
                                   onChanged: (value) {
-                                          controller.checkIsSaveActive();
-                                        },
+                                    controller.checkIsSaveActive();
+                                  },
                                   decoration: InputDecoration(
                                     hint: Text(
                                       'e.g. Laal Mirch Powder',
