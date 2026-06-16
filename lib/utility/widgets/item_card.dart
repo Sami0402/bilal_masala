@@ -158,9 +158,8 @@ class ItemCard extends StatelessWidget {
                                   controller: controller.editProductName,
                                   validator: Validations.editProductName,
                                   onChanged: (value) {
-                                    controller.isSaveActive.value =
-                                        value.isEmpty ? false : true;
-                                  },
+                                          controller.checkIsSaveActive();
+                                        },
                                   decoration: InputDecoration(
                                     hint: Text(
                                       'e.g. Laal Mirch Powder',
@@ -197,8 +196,6 @@ class ItemCard extends StatelessWidget {
                                   ),
                                 ),
                                 SizedBox(height: 18),
-
-                                // CATEGORY
 
                                 // CATEGORY
                                 Text(
@@ -253,7 +250,9 @@ class ItemCard extends StatelessWidget {
                                       child: TextFormField(
                                         controller: controller.editSize,
                                         validator: Validations.editSize,
-
+                                        onChanged: (value) {
+                                          controller.checkIsSaveActive();
+                                        },
                                         decoration: InputDecoration(
                                           hint: Text(
                                             'Size e.g. 250g',
@@ -300,6 +299,9 @@ class ItemCard extends StatelessWidget {
                                       child: TextFormField(
                                         controller: controller.editPrice,
                                         validator: Validations.editPrice,
+                                        onChanged: (value) {
+                                          controller.checkIsSaveActive();
+                                        },
                                         decoration: InputDecoration(
                                           hint: Text(
                                             '₹ Price',
@@ -448,11 +450,9 @@ class ItemCard extends StatelessWidget {
               Expanded(
                 child: InkWell(
                   onTap: () {
-                    // TODO SAMI SHAIKH
                     Get.bottomSheet(
                       Container(
-                        height: SizeConfig.screenHeight * 0.2,
-                        width: SizeConfig.screenWidth,
+                        height: 190,
                         padding: EdgeInsets.symmetric(
                           horizontal: 20,
                           vertical: 15,
@@ -488,6 +488,8 @@ class ItemCard extends StatelessWidget {
                                 Expanded(
                                   child: SolidTextButton(
                                     text: "Cancel",
+                                    onTap: () => Get.back(),
+                                    borderRadius: BorderRadius.circular(8),
                                     borderColor: AppColor.grey,
                                     textStyle: TypographyPoppins.small.copyWith(
                                       fontWeight: FontWeight.bold,
@@ -500,6 +502,7 @@ class ItemCard extends StatelessWidget {
                                   child: SolidTextButton(
                                     onTap: () {},
                                     text: "Delete",
+                                    borderRadius: BorderRadius.circular(8),
                                     backgroundColor: Colors.red,
                                     textStyle: TypographyPoppins.small.copyWith(
                                       fontWeight: FontWeight.bold,
