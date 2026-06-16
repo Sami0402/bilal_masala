@@ -1,12 +1,12 @@
 import 'package:bilal_masala/View/billing_screen.dart';
 import 'package:bilal_masala/utility/constants/routes.dart';
 import 'package:bilal_masala/utility/helpers/size_config.dart';
-import 'package:bilal_masala/utility/widgets/Items.dart';
+import 'package:bilal_masala/utility/widgets/Itemscard_list.dart';
+import 'package:bilal_masala/utility/widgets/add_new_product.dart';
 import 'package:bilal_masala/utility/widgets/custom_category_button.dart';
 import 'package:bilal_masala/utility/widgets/search_items.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 
 class ItemsScreen extends StatelessWidget {
   const ItemsScreen({super.key});
@@ -30,8 +30,12 @@ class ItemsScreen extends StatelessWidget {
 
           // LIST OF ITEMS
           SizedBox(height: 20),
-          ItemsList(),
+          ItemsCardList(),
 
+          // Add New product
+          AddNewProduct(name: '', category: ''),
+
+          //Add
           SizedBox(height: 20),
         ],
       ),

@@ -3,7 +3,7 @@ import 'package:bilal_masala/View/Items_screen.dart';
 import 'package:bilal_masala/View/billing_screen.dart';
 import 'package:bilal_masala/utility/constants/app_colors.dart';
 import 'package:bilal_masala/utility/helpers/size_config.dart';
-import 'package:bilal_masala/utility/widgets/Items.dart';
+import 'package:bilal_masala/utility/widgets/Itemscard_list.dart';
 import 'package:bilal_masala/utility/widgets/custom_App_Bar.dart';
 import 'package:bilal_masala/utility/widgets/custom_category_button.dart';
 import 'package:bilal_masala/utility/widgets/search_items.dart';
