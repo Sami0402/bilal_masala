@@ -25,18 +25,18 @@ class HomeController extends GetxController {
   final TextEditingController editProductName = TextEditingController();
   final TextEditingController editSize = TextEditingController();
   final TextEditingController editPrice = TextEditingController();
-
   void checkIsSaveActive() {
     if (editProductName.text.isNotEmpty &&
         editPrice.text.isNotEmpty &&
         editSize.text.isNotEmpty) {
       print('Listner called!!!!!');
-      
+
       isSaveActive.value = true;
     } else {
       isSaveActive.value = false;
     }
   }
+
   void checkisCreateProductActive() {
     if (editProductName.text.isNotEmpty &&
         editPrice.text.isNotEmpty &&
@@ -47,6 +47,21 @@ class HomeController extends GetxController {
     }
   }
 
+  // MANUAL ENTRY
+  final RxnBool isManualEntryActive = RxnBool(null);
+  final TextEditingController manualEntryQuantity = TextEditingController();
+  final TextEditingController manualEntrySize = TextEditingController();
+  final TextEditingController manualEntryPrice = TextEditingController();
+  void checkIsManualEntryActive() {
+    if (manualEntryQuantity.text.isNotEmpty &&
+        manualEntrySize.text.isNotEmpty &&
+        manualEntryPrice.text.isNotEmpty) {
+      isManualEntryActive.value = true;
+    } else {
+      isManualEntryActive.value = false;
+    }
+  }
+
   // PAGE VIEW
   final RxInt selectedTab = 0.obs;
   final PageController pageController = PageController();
@@ -54,10 +69,19 @@ class HomeController extends GetxController {
     selectedTab.value = index;
     pageController.jumpToPage(index);
   }
+
   void onPageChanged(int index) {
     selectedTab.value = index;
   }
 
+
+
+  // Manually Clear Controllers
+  FutureOr<void> clearManualEntryControllers() {
+    manualEntryQuantity.clear();
+    manualEntrySize.clear();
+    manualEntryPrice.clear();
+  }
 
   @override
   void onInit() {
@@ -73,6 +97,9 @@ class HomeController extends GetxController {
     editProductName.dispose();
     editPrice.dispose();
     editSize.dispose();
+    manualEntryQuantity.dispose();
+    manualEntrySize.dispose();
+    manualEntryPrice.dispose();
     pageController.dispose();
     timer?.cancel();
   }

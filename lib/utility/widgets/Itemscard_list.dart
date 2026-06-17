@@ -1,3 +1,4 @@
+import 'package:bilal_masala/Controllers/home_controller.dart';
 import 'package:bilal_masala/utility/constants/app_colors.dart';
 import 'package:bilal_masala/utility/constants/typography.dart';
 import 'package:bilal_masala/utility/helpers/custom_grid_delegate.dart';
@@ -8,6 +9,7 @@ import 'package:bilal_masala/utility/widgets/quantity_price_chip.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/get_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 
 class ItemsCardList extends StatelessWidget {
@@ -25,6 +27,7 @@ class ItemsCardList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final HomeController controller = Get.find<HomeController>();
     SizeConfig.init(context);
 
     return ListView.builder(
@@ -37,7 +40,7 @@ class ItemsCardList extends StatelessWidget {
             Get.bottomSheet(
               backgroundColor: AppColor.charcoal,
               BottomSheetContent(),
-            );
+            ).whenComplete(controller.clearManualEntryControllers);
           },
           child: ItemCard(name: masalaName[index], category: "Chilli"),
         );
